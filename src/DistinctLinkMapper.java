@@ -1,6 +1,5 @@
 import java.io.IOException;
 
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.MapReduceBase;
@@ -15,11 +14,12 @@ public class DistinctLinkMapper extends MapReduceBase implements
 	public void map(LongWritable key, Text value, OutputCollector<Text, Text> output, Reporter reporter)
 			throws IOException
 	{
-//		System.out.println("In the mapper");
+		System.out.println("In the mapper");
 		String line = value.toString();
 		String[] data = line.split(" ");
 		String webSite = data[0];
 		String link = data[1];
+		System.out.println("Website = " + new Text(webSite) + " Link = " + new Text(link));
 		output.collect(new Text(webSite), new Text(link));
 	}
 }

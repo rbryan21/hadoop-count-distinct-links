@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -18,11 +17,11 @@ public class DistinctLinkReducer extends MapReduceBase implements
 	public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter)
 			throws IOException
 	{
-		Set<String> links = new HashSet<>();
+		Set<Text> links = new HashSet<>();
+		System.out.println("Key  = " + key);
 		while (values.hasNext())
 		{
-			Text value = (Text) values.next();
-			links.add(value.toString());
+			links.add(values.next());
 		}
 		output.collect(key, new Text(links.size() + ""));
 	}
